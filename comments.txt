@@ -1,0 +1,21 @@
+RTSMS
+
+reference: B. Hashemi and Y. Nakatsukasa, RTSMS: Randomized Tucker with single-mode sketching,arXiv preprint arXiv:2311.14873, (2023).
+
+Matlab code: https://github.com/bhashemi/rtsms/
+
+RA-HOOI
+
+reference: C. Xiao and C. Yang, A rank-adaptive higher-order orthogonal iteration algorithm for truncated Tucker decomposition, arXiv preprint arXiv:2110.12564, (2021).
+
+Matlab code: https://github.com/ChuanfuXiao/rank-adaptive-HOOI/
+
+greedy-HOSVD
+
+reference: V. Ehrlacher, L. Grigori, D. Lombardi, and H. Song, Adaptive hierarchical subtensorpartitioning for tensor compression, SIAM Journal on Scientific Computing, 43 (2021), pp. A139–A163.
+
+randQB_EI
+
+reference: W. Yu, Y. Gu, and Y. Li, Efficient randomized algorithms for the fixed-precision low-rank matrix approximation, SIAM Journal on Matrix Analysis and Applications, 39 (2018), pp. 1339–1359.
+
+Matlab code: https://github.com/THU-numbda/randQB_auto
