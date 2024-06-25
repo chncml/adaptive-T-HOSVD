@@ -7,7 +7,7 @@ function [T,rankss] = greedy_hosvd(A,epsilon)
 sizeA = size(A);
 N = length(sizeA); 
 normA = frob(A);
-R = zeros(N,1);
+R = zeros(1, N);
 
 % store the singular values decomposition factors
 U = cell(N,1);
@@ -73,8 +73,9 @@ G = tmprod(A,U,1:N,'T');
 T.core = G;
 T.U = U;
 rankss = R;
-relres = sqrt(1 - frob(G)^2/normA^2);
+% relres = sqrt(1 - frob(G)^2/normA^2);
 
 % print the result
-fprintf('Rank is %d\n',rankss);
-fprintf('Approximation error is %f\n',relres);
+% fprintf('Rank is %d\n',rankss);
+% fprintf('Approximation error is %f\n',relres);
+end
