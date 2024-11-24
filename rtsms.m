@@ -91,6 +91,7 @@ for j = 1:d
                 if el <= rforest/1.1 % truncate
                     core_new_mode = core_new_mode(1:el,:); 
                     RR = RR(1:el,1:el);
+                    
                     ind = size(core_new);
                     size_trunc_core = [ind([1:mode-1])  el  ind([mode+1:d])];
                     trunc_indices = arrayfun(@(n) 1:n, size_trunc_core, 'UniformOutput', false);

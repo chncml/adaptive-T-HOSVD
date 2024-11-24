@@ -1,40 +1,29 @@
-function [Q, B, k] = randQB_EI_auto_kr_gaussian(A, relerr, b, P)
+function [Q, B, mu] = randQB_EI_auto_kr_gaussian(A, relerr, b, P)
     m  = size(A);n = length(m);
-    mm = m(1);mn = prod(m(2 : n));
+    mm = m(1);mn = prod(m(2:n));
     Q = zeros(mm, 0);B = zeros(0, mn);
-    A = reshape(A, m(1), []);
-    E = norm(A, 'fro')^2;
+    E = norm(A(:))^2;A1 = ndim_unfold(A, 1);A = tensor(A);
     threshold = relerr;
     maxiter = ceil(min(mm, mn)/b);
-    flag = false;
-    for i = 1:maxiter,
-        % Omg1 = ones(1, b);
-        % for ind = 2 : n
-        %     Omg = kr(Omg, randn(m(ind), b));
-        % end
-        Omg1 = randn(m(2), b);Omg2 = randn(m(3), b);
-        Omg = kr(Omg1, Omg2);
-        Y = A * Omg - (Q * (B * Omg));
-        [Qi, ~] = qr(Y, 0);
-        
-        for j = 1:P
-            [Qi, ~] = qr(A'*Qi - B'*(Q'*Qi), 0);
-            [Qi, ~] = qr(A*Qi - Q*(B*Qi), 0);
+    flag = false;Omg = cell(1, n);Omg{1} = [];
+    for i = 1:maxiter
+        for ind = 2:n
+            Omg{ind} = randn(m(ind), b);
         end
-        
+        Y = mttkrp(A, Omg, 1) - Q * (B * kr(Omg([2:n])));
+        [Qi, ~] = qr(Y, 0);
+        for j = 1:P
+            [Qi, ~] = qr(A1'*Qi - B'*(Q'*Qi), 0);
+            [Qi, ~] = qr(A1*Qi - Q*(B*Qi), 0);
+        end
         [Qi, ~] = qr(Qi - Q * (Q' * Qi), 0);
-        
-        Bi = Qi' * A - Qi' * Q * B;
-        
-        Q = [Q, Qi];
-        B = [B; Bi];
-        
+        Bi = Qi' * A1 - Qi' * Q * B;
+        Q = [Q, Qi];B = [B; Bi];
         temp = E- norm(Bi, 'fro')^2;
-        
-        if temp < threshold,   % precise rank determination 
-            for j = 1:b,
+        if temp < threshold 
+            for j = 1:b
                 E = E-norm(Bi(j,:))^2;
-                if E< threshold,
+                if E< threshold
                     flag = true;
                     break;
                 end
@@ -42,13 +31,13 @@ function [Q, B, k] = randQB_EI_auto_kr_gaussian(A, relerr, b, P)
         else
             E= temp;
         end
-        if flag,
-            k = (i - 1) * b + j;
+        if flag
+            mu = (i - 1) * b + j;
             break;
         end
     end
-    if ~flag,
-        k = i * b;
+    if ~flag
+        mu = i * b;
     end
-    Q = Q(:, 1 : k);B = B(1 : k, :);
+    Q = Q(:, 1 : mu);B = B(1 : mu, :);
 end

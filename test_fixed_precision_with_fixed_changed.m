@@ -1,6 +1,6 @@
 function test_fixed_precision_with_fixed_changed
 %% comparison on fixed and changed
-clc;clear;
+clear;clc;
 
 %% Yale
 relerr1 = [0.5, 0.1, 0.05];
@@ -18,12 +18,12 @@ for k = 1 : 3
     for sample = 1 : 10
         t1 = tic;[G1, U1, mult_rank1] = adap_randomized_hosvd_EI_gaussian(A, relerr, 60, 1);t1 = toc(t1);
         t2 = tic;[G2, U2, mult_rank2] = adap_randomized_hosvd_EI_gaussian_fix(A, relerr, 60, 1);t2 = toc(t2);
-        t3 = tic;[G3, U3, mult_rank3] = adap_randomized_hosvd_EI_bernoulli(A, relerr, 60, 1);t3 = toc(t3);
-        t4 = tic;[G4, U4, mult_rank4] = adap_randomized_hosvd_EI_bernoulli_fix(A, relerr, 60, 1);t4 = toc(t4);
+        t3 = tic;[G3, U3, mult_rank3] = adap_randomized_hosvd_EI_uniform(A, relerr, 60, 1);t3 = toc(t3);
+        t4 = tic;[G4, U4, mult_rank4] = adap_randomized_hosvd_EI_uniform_fix(A, relerr, 60, 1);t4 = toc(t4);
         t5 = tic;[G5, U5, mult_rank5] = adap_randomized_hosvd_EI_kr_gaussian(A, relerr, 60, 1);t5 = toc(t5);
         t6 = tic;[G6, U6, mult_rank6] = adap_randomized_hosvd_EI_kr_gaussian_fix(A, relerr, 60, 1);t6 = toc(t6);
-        t7 = tic;[G7, U7, mult_rank7] = adap_randomized_hosvd_EI_kr_bernoulli(A, relerr, 60, 1);t7 = toc(t7);
-        t8 = tic;[G8, U8, mult_rank8] = adap_randomized_hosvd_EI_kr_bernoulli_fix(A, relerr, 60, 1);t8 = toc(t8);
+        t7 = tic;[G7, U7, mult_rank7] = adap_randomized_hosvd_EI_kr_uniform(A, relerr, 60, 1);t7 = toc(t7);
+        t8 = tic;[G8, U8, mult_rank8] = adap_randomized_hosvd_EI_kr_uniform_fix(A, relerr, 60, 1);t8 = toc(t8);
         A1 = tmprod(G1, U1, [1:3]);Err1 = norm(A1(:) - A(:))/normA;
         A2 = tmprod(G2, U2, [1:3]);Err2 = norm(A2(:) - A(:))/normA;
         A3 = tmprod(G3, U3, [1:3]);Err3 = norm(A3(:) - A(:))/normA;
@@ -61,12 +61,12 @@ for k = 1 : 3
     for sample = 1 : 10
         t1 = tic;[G1, U1, mult_rank1] = adap_randomized_shosvd_EI_gaussian(A, relerr, 60, 1);t1 = toc(t1);
         t2 = tic;[G2, U2, mult_rank2] = adap_randomized_shosvd_EI_gaussian_fix(A, relerr, 60, 1);t2 = toc(t2);
-        t3 = tic;[G3, U3, mult_rank3] = adap_randomized_shosvd_EI_bernoulli(A, relerr, 60, 1);t3 = toc(t3);
-        t4 = tic;[G4, U4, mult_rank4] = adap_randomized_shosvd_EI_bernoulli_fix(A, relerr, 60, 1);t4 = toc(t4);
+        t3 = tic;[G3, U3, mult_rank3] = adap_randomized_shosvd_EI_uniform(A, relerr, 60, 1);t3 = toc(t3);
+        t4 = tic;[G4, U4, mult_rank4] = adap_randomized_shosvd_EI_uniform_fix(A, relerr, 60, 1);t4 = toc(t4);
         t5 = tic;[G5, U5, mult_rank5] = adap_randomized_shosvd_EI_kr_gaussian(A, relerr, 60, 1);t5 = toc(t5);
         t6 = tic;[G6, U6, mult_rank6] = adap_randomized_shosvd_EI_kr_gaussian_fix(A, relerr, 60, 1);t6 = toc(t6);
-        t7 = tic;[G7, U7, mult_rank7] = adap_randomized_shosvd_EI_kr_bernoulli(A, relerr, 60, 1);t7 = toc(t7);
-        t8 = tic;[G8, U8, mult_rank8] = adap_randomized_shosvd_EI_kr_bernoulli_fix(A, relerr, 60, 1);t8 = toc(t8);
+        t7 = tic;[G7, U7, mult_rank7] = adap_randomized_shosvd_EI_kr_uniform(A, relerr, 60, 1);t7 = toc(t7);
+        t8 = tic;[G8, U8, mult_rank8] = adap_randomized_shosvd_EI_kr_uniform_fix(A, relerr, 60, 1);t8 = toc(t8);
         A1 = tmprod(G1, U1, [1:3]);Err1 = norm(A1(:) - A(:))/normA;
         A2 = tmprod(G2, U2, [1:3]);Err2 = norm(A2(:) - A(:))/normA;
         A3 = tmprod(G3, U3, [1:3]);Err3 = norm(A3(:) - A(:))/normA;
@@ -117,12 +117,12 @@ for k = 1 : 3
     for sample = 1 : 10
         t1 = tic;[G1, U1, mult_rank1] = adap_randomized_hosvd_EI_gaussian(A, relerr, 60, 1);t1 = toc(t1);
         t2 = tic;[G2, U2, mult_rank2] = adap_randomized_hosvd_EI_gaussian_fix(A, relerr, 60, 1);t2 = toc(t2);
-        t3 = tic;[G3, U3, mult_rank3] = adap_randomized_hosvd_EI_bernoulli(A, relerr, 60, 1);t3 = toc(t3);
-        t4 = tic;[G4, U4, mult_rank4] = adap_randomized_hosvd_EI_bernoulli_fix(A, relerr, 60, 1);t4 = toc(t4);
+        t3 = tic;[G3, U3, mult_rank3] = adap_randomized_hosvd_EI_uniform(A, relerr, 60, 1);t3 = toc(t3);
+        t4 = tic;[G4, U4, mult_rank4] = adap_randomized_hosvd_EI_uniform_fix(A, relerr, 60, 1);t4 = toc(t4);
         t5 = tic;[G5, U5, mult_rank5] = adap_randomized_hosvd_EI_kr_gaussian(A, relerr, 60, 1);t5 = toc(t5);
         t6 = tic;[G6, U6, mult_rank6] = adap_randomized_hosvd_EI_kr_gaussian_fix(A, relerr, 60, 1);t6 = toc(t6);
-        t7 = tic;[G7, U7, mult_rank7] = adap_randomized_hosvd_EI_kr_bernoulli(A, relerr, 60, 1);t7 = toc(t7);
-        t8 = tic;[G8, U8, mult_rank8] = adap_randomized_hosvd_EI_kr_bernoulli_fix(A, relerr, 60, 1);t8 = toc(t8);
+        t7 = tic;[G7, U7, mult_rank7] = adap_randomized_hosvd_EI_kr_uniform(A, relerr, 60, 1);t7 = toc(t7);
+        t8 = tic;[G8, U8, mult_rank8] = adap_randomized_hosvd_EI_kr_uniform_fix(A, relerr, 60, 1);t8 = toc(t8);
         A1 = tmprod(G1, U1, [1:3]);Err1 = norm(A1(:) - A(:))/normA;
         A2 = tmprod(G2, U2, [1:3]);Err2 = norm(A2(:) - A(:))/normA;
         A3 = tmprod(G3, U3, [1:3]);Err3 = norm(A3(:) - A(:))/normA;
@@ -160,12 +160,12 @@ for k = 1 : 3
     for sample = 1 : 10
         t1 = tic;[G1, U1, mult_rank1] = adap_randomized_shosvd_EI_gaussian(A, relerr, 60, 1);t1 = toc(t1);
         t2 = tic;[G2, U2, mult_rank2] = adap_randomized_shosvd_EI_gaussian_fix(A, relerr, 60, 1);t2 = toc(t2);
-        t3 = tic;[G3, U3, mult_rank3] = adap_randomized_shosvd_EI_bernoulli(A, relerr, 60, 1);t3 = toc(t3);
-        t4 = tic;[G4, U4, mult_rank4] = adap_randomized_shosvd_EI_bernoulli_fix(A, relerr, 60, 1);t4 = toc(t4);
+        t3 = tic;[G3, U3, mult_rank3] = adap_randomized_shosvd_EI_uniform(A, relerr, 60, 1);t3 = toc(t3);
+        t4 = tic;[G4, U4, mult_rank4] = adap_randomized_shosvd_EI_uniform_fix(A, relerr, 60, 1);t4 = toc(t4);
         t5 = tic;[G5, U5, mult_rank5] = adap_randomized_shosvd_EI_kr_gaussian(A, relerr, 60, 1);t5 = toc(t5);
         t6 = tic;[G6, U6, mult_rank6] = adap_randomized_shosvd_EI_kr_gaussian_fix(A, relerr, 60, 1);t6 = toc(t6);
-        t7 = tic;[G7, U7, mult_rank7] = adap_randomized_shosvd_EI_kr_bernoulli(A, relerr, 60, 1);t7 = toc(t7);
-        t8 = tic;[G8, U8, mult_rank8] = adap_randomized_shosvd_EI_kr_bernoulli_fix(A, relerr, 60, 1);t8 = toc(t8);
+        t7 = tic;[G7, U7, mult_rank7] = adap_randomized_shosvd_EI_kr_uniform(A, relerr, 60, 1);t7 = toc(t7);
+        t8 = tic;[G8, U8, mult_rank8] = adap_randomized_shosvd_EI_kr_uniform_fix(A, relerr, 60, 1);t8 = toc(t8);
         A1 = tmprod(G1, U1, [1:3]);Err1 = norm(A1(:) - A(:))/normA;
         A2 = tmprod(G2, U2, [1:3]);Err2 = norm(A2(:) - A(:))/normA;
         A3 = tmprod(G3, U3, [1:3]);Err3 = norm(A3(:) - A(:))/normA;

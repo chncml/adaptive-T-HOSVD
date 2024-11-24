@@ -30,12 +30,12 @@ for k = 1 : 3
         A1 = tmprod(T.core, T.U, [1 : 3]);
         ERR1(k) = ERR1(k) + norm(A1(:) - A(:))/normA;ML1(k,:) = ML1(k,:)+mult_rank;
         T1(k) = T1(k) + t1;
-        
+
         t2 = tic;[U, S] = mlsvd(A, relerr, 0);t2 = toc(t2);
         A2 = tmprod(S, U, [1, 2, 3]);
         ERR2(k) = ERR2(k) + norm(A2(:) - A(:))/normA;ML2(k,:) = ML2(k,:)+size(S);
         T2(k) = T2(k) + t2;
-        
+
         t3 = tic;[T, ranks, ~] = rank_ada_hooi(A, relerr);t3 = toc(t3);
         A3 = tmprod(T.core, T.U, [1 : 3]);
         ERR3(k) = ERR3(k) + norm(A3(:) - A(:))/normA;ML3(k,:) = ML3(k,:)+ranks;
@@ -61,7 +61,7 @@ for k = 1 : 3
         ERR7(k) = ERR7(k) + norm(A7(:) - A(:))/normA;ML7(k,:) = ML7(k,:)+mult_rank7;
         T7(k) = T7(k) + t7;
 
-        t8 = tic;[G8, U8, mult_rank8] = adap_randomized_hosvd_EI_kr_bernoulli(A, relerr, 60, 1);t8 = toc(t8);
+        t8 = tic;[G8, U8, mult_rank8] = adap_randomized_hosvd_EI_kr_uniform(A, relerr, 60, 1);t8 = toc(t8);
         A8 = tmprod(G8, U8, [1, 2, 3]);
         ERR8(k) = ERR8(k) + norm(A8(:) - A(:))/normA;ML8(k,:) = ML8(k,:)+mult_rank8;
         T8(k) = T8(k) + t8;
@@ -86,7 +86,7 @@ for k = 1 : 3
         ERR12(k) = ERR12(k) + norm(A12(:) - A(:))/normA;ML12(k,:) = ML12(k,:)+mult_rank12;
         T12(k) = T12(k) + t12;
 
-        t13 = tic;[G13, U13, mult_rank13] = adap_randomized_shosvd_EI_kr_bernoulli(A, relerr, 60, 1);t13 = toc(t13);
+        t13 = tic;[G13, U13, mult_rank13] = adap_randomized_shosvd_EI_kr_uniform(A, relerr, 60, 1);t13 = toc(t13);
         A13 = tmprod(G13, U13, [1, 2, 3]);
         ERR13(k) = ERR13(k) + norm(A13(:) - A(:))/normA;ML13(k,:) = ML13(k,:)+mult_rank13;
         T13(k) = T13(k) + t13;
@@ -123,12 +123,12 @@ for k = 1 : 3
         A1 = tmprod(T.core, T.U, [1 : 3]);
         ERR1(k) = ERR1(k) + norm(A1(:) - A(:))/normA;ML1(k,:) = ML1(k,:)+mult_rank;
         T1(k) = T1(k) + t1;
-        
+
         t2 = tic;[U, S] = mlsvd(A, relerr, 0);t2 = toc(t2);
         A2 = tmprod(S, U, [1, 2, 3]);
         ERR2(k) = ERR2(k) + norm(A2(:) - A(:))/normA;ML2(k,:) = ML2(k,:)+size(S);
         T2(k) = T2(k) + t2;
-        
+
         t3 = tic;[T, ranks, ~] = rank_ada_hooi(A, relerr);t3 = toc(t3);
         A3 = tmprod(T.core, T.U, [1 : 3]);
         ERR3(k) = ERR3(k) + norm(A3(:) - A(:))/normA;ML3(k,:) = ML3(k,:)+ranks;
@@ -154,7 +154,7 @@ for k = 1 : 3
         ERR7(k) = ERR7(k) + norm(A7(:) - A(:))/normA;ML7(k,:) = ML7(k,:)+mult_rank7;
         T7(k) = T7(k) + t7;
 
-        t8 = tic;[G8, U8, mult_rank8] = adap_randomized_hosvd_EI_kr_bernoulli(A, relerr, 60, 1);t8 = toc(t8);
+        t8 = tic;[G8, U8, mult_rank8] = adap_randomized_hosvd_EI_kr_uniform(A, relerr, 60, 1);t8 = toc(t8);
         A8 = tmprod(G8, U8, [1, 2, 3]);
         ERR8(k) = ERR8(k) + norm(A8(:) - A(:))/normA;ML8(k,:) = ML8(k,:)+mult_rank8;
         T8(k) = T8(k) + t8;
@@ -179,7 +179,7 @@ for k = 1 : 3
         ERR12(k) = ERR12(k) + norm(A12(:) - A(:))/normA;ML12(k,:) = ML12(k,:)+mult_rank12;
         T12(k) = T12(k) + t12;
 
-        t13 = tic;[G13, U13, mult_rank13] = adap_randomized_shosvd_EI_kr_bernoulli(A, relerr, 60, 1);t13 = toc(t13);
+        t13 = tic;[G13, U13, mult_rank13] = adap_randomized_shosvd_EI_kr_uniform(A, relerr, 60, 1);t13 = toc(t13);
         A13 = tmprod(G13, U13, [1, 2, 3]);
         ERR13(k) = ERR13(k) + norm(A13(:) - A(:))/normA;ML13(k,:) = ML13(k,:)+mult_rank13;
         T13(k) = T13(k) + t13;
@@ -187,7 +187,7 @@ for k = 1 : 3
 end
 
 format short e;
-[ML1, ML2, ML3, ML4, ML5, ML6, ML7, ML8, ML9, ML10, ML11, ML12, ML13]/10
+[ML1 ML2, ML3, ML4, ML5, ML6, ML7, ML8, ML9, ML10, ML11, ML12, ML13]/10
 [ERR1, ERR2, ERR3, ERR4, ERR5, ERR6, ERR7, ERR8, ERR9, ERR10, ERR11, ERR12, ERR13]/10
 [T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13]/10
 
@@ -214,12 +214,12 @@ for k = 1 : 3
         A1 = tmprod(T.core, T.U, [1 : 3]);
         ERR1(k) = ERR1(k) + norm(A1(:) - A(:))/normA;ML1(k,:) = ML1(k,:)+mult_rank;
         T1(k) = T1(k) + t1;
-        
+
         t2 = tic;[U, S] = mlsvd(A, relerr, 0);t2 = toc(t2);
         A2 = tmprod(S, U, [1, 2, 3]);
         ERR2(k) = ERR2(k) + norm(A2(:) - A(:))/normA;ML2(k,:) = ML2(k,:)+size(S);
         T2(k) = T2(k) + t2;
-        
+
         t3 = tic;[T, ranks, ~] = rank_ada_hooi(A, relerr);t3 = toc(t3);
         A3 = tmprod(T.core, T.U, [1 : 3]);
         ERR3(k) = ERR3(k) + norm(A3(:) - A(:))/normA;ML3(k,:) = ML3(k,:)+ranks;
@@ -245,7 +245,7 @@ for k = 1 : 3
         ERR7(k) = ERR7(k) + norm(A7(:) - A(:))/normA;ML7(k,:) = ML7(k,:)+mult_rank7;
         T7(k) = T7(k) + t7;
 
-        t8 = tic;[G8, U8, mult_rank8] = adap_randomized_hosvd_EI_kr_bernoulli(A, relerr, 60, 1);t8 = toc(t8);
+        t8 = tic;[G8, U8, mult_rank8] = adap_randomized_hosvd_EI_kr_uniform(A, relerr, 60, 1);t8 = toc(t8);
         A8 = tmprod(G8, U8, [1, 2, 3]);
         ERR8(k) = ERR8(k) + norm(A8(:) - A(:))/normA;ML8(k,:) = ML8(k,:)+mult_rank8;
         T8(k) = T8(k) + t8;
@@ -270,7 +270,7 @@ for k = 1 : 3
         ERR12(k) = ERR12(k) + norm(A12(:) - A(:))/normA;ML12(k,:) = ML12(k,:)+mult_rank12;
         T12(k) = T12(k) + t12;
 
-        t13 = tic;[G13, U13, mult_rank13] = adap_randomized_shosvd_EI_kr_bernoulli(A, relerr, 60, 1);t13 = toc(t13);
+        t13 = tic;[G13, U13, mult_rank13] = adap_randomized_shosvd_EI_kr_uniform(A, relerr, 60, 1);t13 = toc(t13);
         A13 = tmprod(G13, U13, [1, 2, 3]);
         ERR13(k) = ERR13(k) + norm(A13(:) - A(:))/normA;ML13(k,:) = ML13(k,:)+mult_rank13;
         T13(k) = T13(k) + t13;
@@ -281,5 +281,4 @@ format short e;
 [ML1, ML2, ML3, ML4, ML5, ML6, ML7, ML8, ML9, ML10, ML11, ML12, ML13]/10
 [ERR1, ERR2, ERR3, ERR4, ERR5, ERR6, ERR7, ERR8, ERR9, ERR10, ERR11, ERR12, ERR13]/10
 [T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13]/10
-
 end
